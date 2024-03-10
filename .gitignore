@@ -56,4 +56,6 @@ Thumbs.db
 *.sass-cache
 *.lock
 config.php
+.htpasswd
+
 
