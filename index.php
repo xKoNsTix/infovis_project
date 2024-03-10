@@ -1,57 +1,62 @@
+<?php
+require_once 'config.php'?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My PHP Project</title>
+    <title>Infovis Project
+    </title>
     <!-- Link to CSS files, JS, and other assets if needed -->
+    <meta name="robots" content="noindex, nofollow">
 </head>
 
 <body>
-    <h1>Welcome to My PHP Project</h1>
-    <p>This is a basic PHP project structure.</p>
-
-    <!-- You can insert PHP anywhere in your HTML to dynamically generate content -->
+    <h1>Welcome to infovisproject</h1>
     <?php
-    echo '<p>Current Time: ' . date('Y-m-d H:i:s') . '</p>';
-    ?>
-    <?php
-    // Home Assistant API URL for a specific sensor
-    $ha_url = "https://33d73ipserxnyyj9weae3lcmpoxx8omm.ui.nabu.casa/api/states/sensor.energy_total";
 
-    // Setup curl
-    $ch = curl_init($ha_url);
+// Sensor URLs
+$sensor_urls = [
+    'energy_total' => "https://33d73ipserxnyyj9weae3lcmpoxx8omm.ui.nabu.casa/api/states/sensor.energy_total",
+    'energy_current' => "https://33d73ipserxnyyj9weae3lcmpoxx8omm.ui.nabu.casa/api/states/sensor.energy_current",
+    // Add more sensors here
+];
+
+// Function to fetch sensor data
+function fetchSensorData($sensorUrl) {
+    $ch = curl_init($sensorUrl);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIzMjZlMDAxMzkzZTg0NmZmOTJiNDRhNjQ0MzBiNDQwNCIsImlhdCI6MTcxMDA4ODI0MywiZXhwIjoyMDI1NDQ4MjQzfQ.M7NzoyedG2_tnHC3KlRdTVY2mbVFz8fC4ByzVrJAZV4
-    ',
+        'Authorization: Bearer ' . HOME_ASSISTANT_TOKEN,
         'Content-Type: application/json'
     ]);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_FAILONERROR, true);
 
-    // Execute the request
     $response = curl_exec($ch);
 
-    // Check for errors
     if (curl_errno($ch)) {
-        // Handle error; for example:
         echo 'Error:' . curl_error($ch);
     } else {
-        // Decode the JSON response
         $sensor_data = json_decode($response, true);
-
-
-        // Display the sensor value
-        // Adjust 'state' or other keys based on your sensor data
-        echo "Sensor Value: " . $sensor_data['state'];
+        return $sensor_data;
     }
 
-    // Close curl
     curl_close($ch);
-    ?>
+}
+
+// Iterate over sensor URLs and display data
+foreach ($sensor_urls as $sensor_name => $sensor_url) {
+    $sensor_data = fetchSensorData($sensor_url);
+    if ($sensor_data) {
+        echo "Sensor Value for $sensor_name: " . $sensor_data['state'] . "kw/h" . "\n";
+    }
+}
+?>
+
+
 
 </body>
 
 </html>
-
