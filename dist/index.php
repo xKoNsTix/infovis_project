@@ -47,7 +47,7 @@ if ($result && $result->num_rows > 0) {
     // Loop through the fetched data
     while ($row = $result->fetch_assoc()) {
         // Display each energy total value with custom font color and size
-        echo '<div class="energy-value" style="color: #ff0000; font-size: 18px;">' . $row['energy_total'] . '</div>';
+        echo '<div class="energy-value" style="color: #ffffff; font-size: 24px; margin-top:20px;">' . $row['energy_total'] . '</div>';
     }
 
     echo '</div>'; // Close gauge-container div
