@@ -34,7 +34,7 @@ $dbConnection = getDbConnection();
         <div id="energy-current" class="sensor-value"></div>
         <div id="energy-current-gauge" class="gauge-container fade-in"></div>
 
-<?php
+        <?php
 $dbConnection = getDbConnection();
 // Fetch the latest 7 values from the daily_energy_totals table
 $query = "SELECT * FROM daily_energy_totals ORDER BY date DESC LIMIT 7";
@@ -46,8 +46,8 @@ if ($result && $result->num_rows > 0) {
 
     // Loop through the fetched data
     while ($row = $result->fetch_assoc()) {
-        // Display each energy total value
-        echo '<div class="energy-value">' . $row['energy_total'] . '</div>';
+        // Display each energy total value with custom font color and size
+        echo '<div class="energy-value" style="color: #ff0000; font-size: 18px;">' . $row['energy_total'] . '</div>';
     }
 
     echo '</div>'; // Close gauge-container div
