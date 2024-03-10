@@ -6,6 +6,7 @@ cp ./src/index.php ./dist/
 cp ./src/fetch_into_db.php ./dist/
 cp ./src/fetch_sensors.php ./dist/
 cp ./src/functions.php ./dist/
+cp robots.txt ./dist/
 
 
 
