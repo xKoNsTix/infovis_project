@@ -1,6 +1,7 @@
 
 <?php
 require_once '../config.php';
+require_once 'fetch_sensor_data.php';
 header('Content-Type: application/json');
 $sensor_urls = [
     'energy_total' => "https://33d73ipserxnyyj9weae3lcmpoxx8omm.ui.nabu.casa/api/states/sensor.energy_total",
@@ -13,27 +14,6 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 // Function to fetch sensor data
-function fetchSensorData($sensorUrl)
-{
-    $ch = curl_init($sensorUrl);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Authorization: Bearer ' . HOME_ASSISTANT_TOKEN,
-        'Content-Type: application/json'
-    ]);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_FAILONERROR, true);
-
-    $response = curl_exec($ch);
-
-    if (curl_errno($ch)) {
-        echo 'Error:' . curl_error($ch);
-    } else {
-        $sensor_data = json_decode($response, true);
-        return $sensor_data;
-    }
-
-    curl_close($ch);
-}
 
 // Fetch and store sensor data individually
 $energy_total_data = fetchSensorData($sensor_urls['energy_total']);
