@@ -35,29 +35,31 @@ $dbConnection = getDbConnection();
         <div id="energy-current-gauge" class="gauge-container fade-in"></div>
 
         <?php
-$dbConnection = getDbConnection();
-// Fetch the latest 7 values from the daily_energy_totals table
-$query = "SELECT * FROM daily_energy_totals ORDER BY date DESC LIMIT 7";
-$result = $dbConnection->query($query);
 
-// Check if there are any results
-if ($result && $result->num_rows > 0) {
-    echo '<div id="energy-current-gauge" class="gauge-container fade-in">';
+        $dbConnection = getDbConnection();
+        // Fetch the latest 7 values from the daily_energy_totals table
+        $query = "SELECT REPLACE(DATE_FORMAT(date, '%d/%m/%Y'), '/', '.') AS formatted_date, REPLACE(energy_total, '.', ',') AS formatted_energy_total FROM daily_energy_totals ORDER BY date DESC LIMIT 7";
+        $result = $dbConnection->query($query);
 
-    // Loop through the fetched data
-    while ($row = $result->fetch_assoc()) {
-        // Display each energy total value with custom font color and size
-        echo '<div class="energy-value" style="color: #ffffff; font-size: 24px; margin-top:20px;">' . $row['energy_total'] . '</div>';
-    }
+        // Check if there are any results
+        if ($result && $result->num_rows > 0) {
+            echo '<div id="energy-current-gauge" class="gauge-container fade-in">';
 
-    echo '</div>'; // Close gauge-container div
-} else {
-    echo "No data available.";
-}
+            // Loop through the fetched data
+            while ($row = $result->fetch_assoc()) {
+                // Display each energy total value with custom font color and size
+                echo '<div class="energy-value" style="color: #ffffff; font-size: 24px; margin-top:20px;">' . $row['formatted_date'] . ': ' . $row['formatted_energy_total'] . ' KWH </div>';
+            }
 
-// Close the database connection
-$dbConnection->close();
-?>
+            echo '</div>'; // Close gauge-container div
+        } else {
+            echo "No data available.";
+        }
+
+        // Close the database connection
+        $dbConnection->close();
+        ?>
+
 
         <script src="script.js"></script>
     </body>
