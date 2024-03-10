@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php'; 
+require_once '../config.php';
 require_once 'functions.php';
 $dbConnection = getDbConnection();
 ?>
@@ -34,6 +34,30 @@ $dbConnection = getDbConnection();
         <div id="energy-current" class="sensor-value"></div>
         <div id="energy-current-gauge" class="gauge-container fade-in"></div>
 
+<?php
+$dbConnection = getDbConnection();
+// Fetch the latest 7 values from the daily_energy_totals table
+$query = "SELECT * FROM daily_energy_totals ORDER BY date DESC LIMIT 7";
+$result = $dbConnection->query($query);
+
+// Check if there are any results
+if ($result && $result->num_rows > 0) {
+    echo '<div id="energy-current-gauge" class="gauge-container fade-in">';
+
+    // Loop through the fetched data
+    while ($row = $result->fetch_assoc()) {
+        // Display each energy total value
+        echo '<div class="energy-value">' . $row['energy_total'] . '</div>';
+    }
+
+    echo '</div>'; // Close gauge-container div
+} else {
+    echo "No data available.";
+}
+
+// Close the database connection
+$dbConnection->close();
+?>
 
         <script src="script.js"></script>
     </body>
