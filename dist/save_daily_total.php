@@ -1,7 +1,7 @@
 <?php
 // this file saves the end value of each day into the online db.
 
-require_once '../config.php';
+require_once(__DIR__ . '/../config.php');
 require_once './fetch_sensors.php';
 
 // Fetch the total value from the sensor
