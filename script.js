@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         id: "energy-current-gauge",
         value: 0,
         min: 0,
-        max: 500,
+        max: 400,
         title: "Aktueller Stromverbrauch",
         label: "Watt pro Stunde"
     });
