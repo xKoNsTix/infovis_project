@@ -1,6 +1,6 @@
 
 <?php
-require_once 'config.php';
+require_once '../config.php';
 header('Content-Type: application/json');
 $sensor_urls = [
     'energy_total' => "https://33d73ipserxnyyj9weae3lcmpoxx8omm.ui.nabu.casa/api/states/sensor.energy_total",
