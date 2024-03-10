@@ -1,52 +1,3 @@
-/* Reset some basic elements */
-body, h1, p {
-  margin: 0;
-  padding: 0;
-}
-
-/* HERO */
-/********************NOT IMPORTANT********************/
-body {
-  background: #171717;
-  font-family: "Oswald", sans-serif;
-}
-
-#text {
-  display: flex;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-h2 {
-  color: #fff;
-  font-size: 47px;
-  line-height: 40px;
-}
-
-span {
-  font-size: 35px;
-}
-
-a {
-  color: #808080;
-  text-decoration: none;
-  position: fixed;
-  width: 100%;
-  bottom: 20px;
-  text-align: center;
-  curser: pointer;
-  letter-spacing: 6px;
-  transition: all 0.5s ease-in-out;
-}
-
-a:hover {
-  color: #fff;
-  letter-spacing: 2px;
-  transition: all 0.5s ease-in-out;
-}
-
 /********************IMPORTANT SHIT STARTS HERE********************/
 .line {
   width: 100px;
@@ -138,11 +89,6 @@ a:hover {
     width: 0px;
   }
 }
-h1 {
-  margin-bottom: 20px;
-  color: #444;
-}
-
 /* Add more styles as needed */
 .container {
   max-width: 800px;
@@ -200,6 +146,56 @@ h1 {
   max-width: 400px;
   margin: 20px auto;
   text-align: center;
+}
+
+/* Reset some basic elements */
+body, h1, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* HERO */
+/********************NOT IMPORTANT********************/
+body {
+  background: #171717 !important;
+  font-family: "Oswald", sans-serif;
+  scroll-behavior: smooth;
+}
+
+#text {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+h2 {
+  color: #fff;
+  font-size: 47px;
+  line-height: 40px;
+}
+
+span {
+  font-size: 35px;
+}
+
+a {
+  color: #808080;
+  text-decoration: none;
+  position: fixed;
+  width: 100%;
+  bottom: 20px;
+  text-align: center;
+  curser: pointer;
+  letter-spacing: 6px;
+  transition: all 0.5s ease-in-out;
+}
+
+a:hover {
+  color: #fff;
+  letter-spacing: 2px;
+  transition: all 0.5s ease-in-out;
 }
 
 /*# sourceMappingURL=style.css.map */

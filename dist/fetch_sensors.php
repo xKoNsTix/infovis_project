@@ -6,6 +6,7 @@ $sensor_urls = [
     'energy_total' => "https://33d73ipserxnyyj9weae3lcmpoxx8omm.ui.nabu.casa/api/states/sensor.energy_total",
     'energy_current' => "https://33d73ipserxnyyj9weae3lcmpoxx8omm.ui.nabu.casa/api/states/sensor.energy_current",
 
+
     // Add more sensors here
 ];
 ini_set('display_errors', 1);
