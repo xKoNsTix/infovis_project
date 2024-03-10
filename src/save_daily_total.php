@@ -2,7 +2,7 @@
 // this file saves the end value of each day into the online db.
 
 require_once(__DIR__ . '/../config.php');
-require_once './fetch_sensors.php';
+require_once (__DIR__ .'./fetch_sensors.php');
 
 // Fetch the total value from the sensor
 $energy_total_data = fetchSensorData($sensor_urls['energy_total']);
