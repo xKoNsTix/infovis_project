@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php'; // Assuming this contains database or other configuration
+require_once '../config.php'; // Assuming this contains database or other configuration
 
 ?>
 
@@ -12,7 +12,6 @@ require_once 'config.php'; // Assuming this contains database or other configura
     <title>Infovis Project</title>
     <link rel="stylesheet" href="style.css">
     <meta name="robots" content="noindex, nofollow">
-    <!-- Include Raphael and JustGage -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.4.0/justgage.min.js"></script>
 
