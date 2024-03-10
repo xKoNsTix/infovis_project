@@ -3,6 +3,7 @@
 
 require_once '../config.php';
 
+
 // Function to fetch sensor data
 function fetchSensorData($sensorUrl)
 {
@@ -28,7 +29,7 @@ function fetchSensorData($sensorUrl)
 
 // Fetch the total value from the sensor
 $energy_total_data = fetchSensorData($sensor_urls['energy_total']);
-
+echo $energy_total_data;
 // Connect to the database
 $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
