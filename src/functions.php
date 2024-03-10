@@ -1,7 +1,6 @@
 <?php function getDbConnection()
 {
-    echo "TEST";
-    // Create connection using the constants from config.php
+        // Create connection using the constants from config.php
     $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
     // Check connection
