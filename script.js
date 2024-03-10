@@ -1,4 +1,4 @@
-//gauge
+//gauge current consumption
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize the gauge
@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         id: "energy-current-gauge",
         value: 0,
         min: 0,
-        max: 1000,
+        max: 500,
         title: "Aktueller Stromverbrauch",
         label: "Watt pro Stunde"
     });
@@ -38,3 +38,5 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(fetchAndUpdateSensorData, 1000);
     fetchAndUpdateSensorData();
 });
+
+
