@@ -5,12 +5,12 @@ npx sass ./src/sass/style.scss ./dist/style.css
 cp ./src/index.php ./dist/
 cp ./src/fetch_into_db.php ./dist/
 cp ./src/fetch_sensors.php ./dist/
-cp ./src/cursor.html ./dist/
+
 
 
 #cp ./src/favicons/*.* ./dist/
 
-npx esbuild ./src/js/script.js --bundle --outfile=./dist/script.js  --minify
+npx esbuild src/js/script.js --bundle --outfile=./dist/script.js  --minify
 
 
 
