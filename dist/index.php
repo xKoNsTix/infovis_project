@@ -1,6 +1,6 @@
 <?php
-require_once '../config.php'; // Assuming this contains database or other configuration
-require_once 'functions.php'; // Assuming this contains database or other configuration
+require_once '../config.php'; 
+require_once 'functions.php';
 $dbConnection = getDbConnection();
 ?>
 
