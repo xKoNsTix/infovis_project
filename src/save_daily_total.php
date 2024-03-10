@@ -4,30 +4,6 @@
 require_once '../config.php';
 require_once './fetch_sensors.php';
 
-
-// Function to fetch sensor data
-function fetchSensorData($sensorUrl)
-{
-    $ch = curl_init($sensorUrl);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Authorization: Bearer ' . HOME_ASSISTANT_TOKEN,
-        'Content-Type: application/json'
-    ]);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_FAILONERROR, true);
-
-    $response = curl_exec($ch);
-
-    if (curl_errno($ch)) {
-        echo 'Error:' . curl_error($ch);
-    } else {
-        $sensor_data = json_decode($response, true);
-        return $sensor_data;
-    }
-
-    curl_close($ch);
-}
-
 // Fetch the total value from the sensor
 $energy_total_data = fetchSensorData($sensor_urls['energy_total']);
 
