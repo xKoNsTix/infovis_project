@@ -1,6 +1,5 @@
 <?php
-require_once 'config.php';
-require_once 'fetch_sensors.php';
+require_once 'config.php'; // Assuming this contains database or other configuration
 
 ?>
 
@@ -12,21 +11,40 @@ require_once 'fetch_sensors.php';
     <title>Infovis Project</title>
     <link rel="stylesheet" href="style.css">
     <meta name="robots" content="noindex, nofollow">
+    <!-- Include Raphael and JustGage -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.4.0/justgage.min.js"></script>
+
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to infovisproject</h1>
-        <?php
-
-                // Display sensor data
-        if ($energy_total_data) {
-            echo "<div class='sensor-value'>Heute im Office verbraucht: " . $energy_total_data['state'] . " KW</div>";
-        }
-        if ($energy_current_data) {
-            echo "<div class='sensor-value'>Aktueller Stromverbrauch im Office: " . $energy_current_data['state'] . " Watt pro Stunde</div>";
-        }
-        // Repeat for other sensors
-        ?>
+        <h1>Information Visualisation Project</h1>
+        <!-- Empty divs for sensor data, to be filled by JavaScript -->
+        <div id="energy-total" class="sensor-value"></div>
+        <div id="energy-current" class="sensor-value"></div>
+        <!-- Add more divs for other sensors as needed -->
     </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    function fetchAndUpdateSensorData() {
+        fetch('fetch_sensors.php')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('energy-total').innerHTML = "Heute im Office verbraucht: " + data.energy_total + " KW";
+                document.getElementById('energy-current').innerHTML = "Aktueller Stromverbrauch im Office: " + data.energy_current + " Watt pro Stunde";
+            })
+            .catch(error => console.error('Error fetching sensor data:', error));
+    }
+
+    setInterval(fetchAndUpdateSensorData, 5000);
+    fetchAndUpdateSensorData();
+});
+</script>
+<div id="energy-current-gauge" class="gauge-container fade-in"></div>
+
+
+<script src="script.js"></script>
 </body>
+
 </html>
