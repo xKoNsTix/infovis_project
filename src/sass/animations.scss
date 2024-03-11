@@ -1,0 +1,23 @@
+/***** CURRENT CONSUMPTION ANIMATION **/
+
+
+/* Define CSS animation */
+@keyframes changeColorAndSize {
+    0% {
+      color: black; /* Initial color */
+      font-size: 100%; /* Initial size */
+    }
+    50% {
+      color: cyan; /* Intermediate color */
+      font-size: 120%; /* Intermediate size */
+    }
+    100% {
+      color: black; /* Final color */
+      font-size: 100%; /* Final size */
+    }
+  }
+
+  /* Apply the animation to the span element */
+  .animated-value {
+    animation: changeColorAndSize 1s ease; /* Use the defined animation with a duration of 1 second */
+  }

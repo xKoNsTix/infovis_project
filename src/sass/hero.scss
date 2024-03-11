@@ -1,110 +1,288 @@
+/**
+ * *****************Hero Animations*******************
+ *
+ * @format
+ */
 
-  /********************IMPORTANT SHIT STARTS HERE********************/
+.line {
+  width: 100px;
+  height: 2px;
+  background: #fff;
+  position: fixed;
+  top: 50%;
+}
 
-  .line {
-      width: 100px;
-      height: 2px;
-      background: #fff;
-      position: fixed;
-      top: 50%;
+#line_r {
+  -webkit-animation: line_r_animation 3s infinite;
+  animation: line_r_animation 3s infinite;
+}
+
+#line_l {
+  -webkit-animation: line_l_animation 3s infinite;
+  animation: line_l_animation 3s infinite;
+}
+
+@-webkit-keyframes line_l_animation {
+  0% {
+    left: calc(2% + 50px);
+    width: 0px;
+  }
+  35% {
+    left: calc(2% + 0px);
+    width: 50px;
+  }
+  70% {
+    left: calc(2% + 0px);
+    width: 0px;
+  }
+  100% {
+    left: calc(2% + 0px);
+    width: 0px;
+  }
+}
+
+@keyframes line_r_animation {
+  0% {
+    left: calc(2% + 50px);
+    width: 0px;
+  }
+  35% {
+    left: calc(2% + 0px);
+    width: 50px;
+  }
+  70% {
+    left: calc(2% + 0px);
+    width: 0px;
+  }
+  100% {
+    left: calc(2% + 0px);
+    width: 0px;
+  }
+}
+
+@-webkit-keyframes line_r_animation {
+  0% {
+    right: calc(2% + 50px);
+    width: 0px;
+  }
+  35% {
+    right: calc(2% + 0px);
+    width: 50px;
+  }
+  70% {
+    right: calc(2% + 0px);
+    width: 0px;
+  }
+  100% {
+    right: calc(2% + 0px);
+    width: 0px;
+  }
+}
+
+@keyframes line_r_animation {
+  0% {
+    right: calc(2% + 50px);
+    width: 0px;
+  }
+  35% {
+    right: calc(2% + 0px);
+    width: 50px;
+  }
+  70% {
+    right: calc(2% + 0px);
+    width: 0px;
+  }
+  100% {
+    right: calc(2% + 0px);
+    width: 0px;
+  }
+}
+
+.slide-in-text-left {
+  position: relative;
+  overflow: hidden;
+  animation: slideInLeft 2s forwards, fadeIn 3s forwards;
+
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-5%);
+    }
+    to {
+      transform: translateX(0);
+    }
   }
 
-  #line_r{
-    -webkit-animation: line_r_animation 3s infinite;
-    animation: line_r_animation 3s infinite;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+
+.slide-in-text-right {
+    position: relative;
+    overflow: hidden;
+    animation: slideInRight 2s forwards, fadeIn 3s forwards;
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(10%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
   }
 
-  #line_l{
-    -webkit-animation: line_l_animation 3s infinite;
-    animation: line_l_animation 3s infinite;
+  .slide-in-text-bottom {
+    position: relative;
+    overflow: hidden;
+    animation: slideInBottom 2s forwards, fadeIn 3s forwards;
+
+    @keyframes slideInBottom {
+      from {
+        transform: translateY(-10%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
   }
 
-  @-webkit-keyframes line_l_animation {
-      0%   {left: calc(2% + 50px); width: 0px;}
-      35%   {left: calc(2% + 0px); width: 50px;}
-      70%   {left: calc(2% + 0px); width: 0px;}
-      100%   {left: calc(2% + 0px); width: 0px;}
-  }
+.slide-in-text-left h1,
+.slide-in-text-left p {
+  margin: 0;
+  padding: 10px;
+  color: #ffffff;
+  background-color: #171717;
+  text-align: center;
+}
 
-  @keyframes line_r_animation {
-      0%   {left: calc(2% + 50px); width: 0px;}
-      35%   {left: calc(2% + 0px); width: 50px;}
-      70%   {left: calc(2% + 0px); width: 0px;}
-      100%   {left: calc(2% + 0px); width: 0px;}
-  }
+/********************Gauge********************/
 
-  @-webkit-keyframes line_r_animation {
-      0%   {right: calc(2% + 50px); width: 0px;}
-      35%   {right: calc(2% + 0px); width: 50px;}
-      70%   {right: calc(2% + 0px); width: 0px;}
-      100%   {right: calc(2% + 0px); width: 0px;}
-  }
-
-  @keyframes line_r_animation {
-      0%   {right: calc(2% + 50px); width: 0px;}
-      35%   {right: calc(2% + 0px); width: 50px;}
-      70%   {right: calc(2% + 0px); width: 0px;}
-      100%   {right: calc(2% + 0px); width: 0px;}
-  }
-
-
-/* Add more styles as needed */
 .container {
-    max-width: 800px;
-    margin: 20rem;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  max-width: 800px;
+  margin: 20rem;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .sensor-value {
-    font-size: 24px;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
-    color: #ffffff;
-    text-align: center;
-
+  font-size: 24px;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  color: #ffffff;
+  text-align: center;
 }
 
 /* Responsive typography */
 @media (max-width: 600px) {
-    body {
-        padding: 10px;
-    }
+  body {
+    padding: 10px;
+  }
 
-    .container {
-        padding: 10px;
-    }
+  .container {
+    padding: 10px;
+  }
 
-    h1 {
-        font-size: 24px;
-    }
+  h1 {
+    font-size: 24px;
+  }
 }
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.fade-in {
-    animation: fadeIn ease-in 1;
-    animation-duration: 1.2s;
-    animation-fill-mode: forwards;
+.fade-in .text {
+  animation: fadeIn ease-in 1;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
 }
 
 /* Apply fade-in to the container */
 .container {
-    animation: fadeIn ease-in 1;
-    animation-duration: 1.5s;
+  animation: fadeIn ease-in 1;
+  animation-duration: 1.5s;
 }
 
 .gauge-container {
-    width: 100%;
-    max-width: 400px;
-    margin: 20px auto;
-    text-align: center;
-
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: center;
+  height: 30vh;
+}
+#text {
+  display: flex;
+  height: 20vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
+h2 {
+  color: #fff;
+  font-size: 47px;
+  line-height: 40px;
+}
+
+span {
+  font-size: 35px;
+}
+
+a {
+  color: #808080;
+  text-decoration: none;
+  position: fixed;
+  width: 100%;
+  bottom: 20px;
+  text-align: center;
+  curser: pointer;
+  letter-spacing: 6px;
+  transition: all 0.5s ease-in-out;
+}
+
+a:hover {
+  color: #fff;
+  letter-spacing: 2px;
+  transition: all 0.5s ease-in-out;
+}
+
+/******************** GAUGE ********************/
+
+.sevendays {
+  height: 50vh;
+  align-items: flex;
+  flex-direction: row;
+}

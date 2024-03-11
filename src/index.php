@@ -16,8 +16,6 @@ $dbConnection = getDbConnection();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.4.0/justgage.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
 </head>
 
 <body>
@@ -27,44 +25,49 @@ $dbConnection = getDbConnection();
     <body>
         <div id="section">
             <div id="text">
-                <h2>Information Visualisation<br><span>Project: Power Consumption</span></h2>
+                <h2>Information Visualisation1<br><span>Project: Power Consumption</span></h2>
             </div>
             <div id="line_r" class="line"></div>
             <div id="line_l" class="line"></div>
         </div>
-        <div id="energy-total" class="sensor-value"></div>
-        <div id="energy-current" class="sensor-value"></div>
+
+        <div class="slide-in-text-left">
+            <h1>Hi Konsti!</h1>
+
+        </div>
+        <div class="slide-in-text-right">
+            <div id="energy-total" class="sensor-value"></div>
+        </div>
+        <div class="slide-in-text-bottom">
+            <div id="energy-current" class="sensor-value"></div>
+        </div>
         <div id="energy-current-gauge" class="gauge-container fade-in"></div>
 
-
         <!-- 7 VALUES -->
+        <div class="sevendays">
+            <?php
 
-        <!-- 7 VALUES -->
-        <?php
-        $dbConnection = getDbConnection();
-        // Fetch the latest 7 values from the daily_energy_totals table
-        $query = "SELECT DATE_FORMAT(date, '%d/%m/%Y') AS formatted_date, energy_total FROM daily_energy_totals ORDER BY date DESC LIMIT 7";
-        $result = $dbConnection->query($query);
+            // Fetch the latest 7 values from the daily_energy_totals table
+            $query = "SELECT DATE_FORMAT(date, '%d/%m/%Y') AS formatted_date, energy_total FROM daily_energy_totals ORDER BY date DESC LIMIT 7";
+            $result = $dbConnection->query($query);
 
-        // Check if there are any results
-        if ($result && $result->num_rows > 0) {
-            echo '<div id="energy-current-gauge" class="gauge-container fade-in">';
+            // Check if there are any results
+            if ($result && $result->num_rows > 0) {
+                echo '<div id="energy-current-gauge" class="gauge-container fade-in">';
 
-            // Loop through the fetched data
-            while ($row = $result->fetch_assoc()) {
-                // Display each energy total value with custom font color and size
-                echo '<div class="energy-value" style="color: #ffffff; font-size: 24px; margin-top:20px;">' . $row['formatted_date'] . ': ' . $row['energy_total'] . ' KWH </div>';
+                // Loop through the fetched data
+                while ($row = $result->fetch_assoc()) {
+                    // Display each energy total value with custom font color and size
+                    echo '<div class="energy-value" style="color: #ffffff; font-size: 24px; margin-top:20px;">' . $row['formatted_date'] . ': ' . $row['energy_total'] . ' KWH </div>';
+                }
+
+                echo '</div>'; // Close gauge-container div
+            } else {
+                echo "No data available.";
             }
-
-            echo '</div>'; // Close gauge-container div
-        } else {
-            echo "No data available.";
-        }
-
-        // Close the database connection
-        $dbConnection->close();
-        ?>
-
+            $dbConnection->close();
+            ?>
+        </div>
         <!-- CHART -->
         <script>
             var dates = [];
@@ -85,14 +88,14 @@ $dbConnection = getDbConnection();
         <script>
             var ctx = document.getElementById('energyChart').getContext('2d');
             var energyChart = new Chart(ctx, {
-                type: 'line', // or 'bar' for a bar chart
+                type: 'line',
                 data: {
                     labels: dates,
                     datasets: [{
                         label: 'Daily Energy Total (KWH)',
                         data: energyTotals,
-                        backgroundColor: 'rgba(128, 0, 128, 0.2)', // Light purple fill
-                        borderColor: 'rgba(128, 0, 128, 1)', // Purple line
+                        backgroundColor: 'rgba(128, 0, 128, 0.2)',
+                        borderColor: 'rgba(3, 224, 254, 1)',
                         borderWidth: 4
                     }]
                 },
@@ -101,39 +104,49 @@ $dbConnection = getDbConnection();
                         y: {
                             beginAtZero: true,
                             grid: {
-                                color: 'white', // White grid lines
-                                borderWidth: 0.5, // Adjust for y-axis grid lines
-
+                                color: 'white',
+                                borderWidth: 0.5,
+                            },
+                            ticks: {
+                                color: 'white', // Change font color of y-axis labels
+                                font: {
+                                    family: "'Oswald', sans-serif", // Set font family
+                                    size: 14 // Set font size
+                                }
                             }
                         },
                         x: {
                             grid: {
-                                color: 'white', // White grid lines
-                                borderWidth: 0.5, // Adjust for y-axis grid lines
-
+                                color: 'white',
+                                borderWidth: 0.5,
+                            },
+                            ticks: {
+                                color: 'white', // Change font color of x-axis labels
+                                font: {
+                                    family: "'Oswald', sans-serif", // Set font family
+                                    size: 14 // Set font size
+                                }
                             }
                         }
                     },
                     layout: {
                         padding: {
-                            left: 50, // Left margin
-                            right: 50, // Right margin
+                            left: 50,
+                            right: 50,
                         }
                     },
                     plugins: {
                         legend: {
                             labels: {
-                                // This more specific font color setting will apply
-                                color: 'white', // White text for legend
-                                size: 20, // Increase font size
-                                family: "'Oswald', sans-serif" // Set font family
+                                color: 'white',
+                                size: 20,
+                                family: "'Oswald', sans-serif"
                             }
                         }
                     }
                 }
             });
         </script>
-
         <script src="script.js"></script>
     </body>
 

@@ -1,4 +1,8 @@
-/********************IMPORTANT SHIT STARTS HERE********************/
+/**
+ * *****************Hero Animations*******************
+ *
+ * @format
+ */
 .line {
   width: 100px;
   height: 2px;
@@ -89,7 +93,82 @@
     width: 0px;
   }
 }
-/* Add more styles as needed */
+.slide-in-text-left {
+  position: relative;
+  overflow: hidden;
+  animation: slideInLeft 2s forwards, fadeIn 3s forwards;
+}
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-5%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-in-text-right {
+  position: relative;
+  overflow: hidden;
+  animation: slideInRight 2s forwards, fadeIn 3s forwards;
+}
+@keyframes slideInRight {
+  from {
+    transform: translateX(10%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-in-text-bottom {
+  position: relative;
+  overflow: hidden;
+  animation: slideInBottom 2s forwards, fadeIn 3s forwards;
+}
+@keyframes slideInBottom {
+  from {
+    transform: translateY(-10%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-in-text-left h1,
+.slide-in-text-left p {
+  margin: 0;
+  padding: 10px;
+  color: #ffffff;
+  background-color: #171717;
+  text-align: center;
+}
+
+/********************Gauge********************/
 .container {
   max-width: 800px;
   margin: 20rem;
@@ -129,7 +208,7 @@
     opacity: 1;
   }
 }
-.fade-in {
+.fade-in .text {
   animation: fadeIn ease-in 1;
   animation-duration: 1.2s;
   animation-fill-mode: forwards;
@@ -146,25 +225,12 @@
   max-width: 400px;
   margin: 20px auto;
   text-align: center;
-}
-
-/* Reset some basic elements */
-body, h1, p {
-  margin: 0;
-  padding: 0;
-}
-
-/* HERO */
-/********************NOT IMPORTANT********************/
-body {
-  background: #171717 !important;
-  font-family: "Oswald", sans-serif;
-  scroll-behavior: smooth;
+  height: 30vh;
 }
 
 #text {
   display: flex;
-  height: 100vh;
+  height: 20vh;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -196,6 +262,48 @@ a:hover {
   color: #fff;
   letter-spacing: 2px;
   transition: all 0.5s ease-in-out;
+}
+
+/******************** GAUGE ********************/
+.sevendays {
+  height: 50vh;
+  align-items: flex;
+  flex-direction: row;
+}
+
+/* Reset some basic elements */
+body, h1, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* HERO */
+/********************NOT IMPORTANT********************/
+body {
+  background: #171717 !important;
+  font-family: "Oswald", sans-serif;
+  scroll-behavior: smooth;
+}
+
+/***** CURRENT CONSUMPTION ANIMATION **/
+/* Define CSS animation */
+@keyframes changeColorAndSize {
+  0% {
+    color: black; /* Initial color */
+    font-size: 100%; /* Initial size */
+  }
+  50% {
+    color: cyan; /* Intermediate color */
+    font-size: 120%; /* Intermediate size */
+  }
+  100% {
+    color: black; /* Final color */
+    font-size: 100%; /* Final size */
+  }
+}
+/* Apply the animation to the span element */
+.animated-value {
+  animation: changeColorAndSize 1s ease; /* Use the defined animation with a duration of 1 second */
 }
 
 /*# sourceMappingURL=style.css.map */
