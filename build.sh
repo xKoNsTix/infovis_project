@@ -8,6 +8,7 @@ cp ./src/fetch_sensors.php ./dist/
 cp ./src/functions.php ./dist/
 cp robots.txt ./dist/
 cp ./src/save_daily_total.php ./dist/
+cp ./src/lamptest.php ./dist/
 
 
 
