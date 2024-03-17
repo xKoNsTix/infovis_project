@@ -33,15 +33,21 @@ $dbConnection = getDbConnection();
 
         <div class="slide-in-text-left">
             <h1>Hi Konsti!</h1>
-
         </div>
         <div class="slide-in-text-right">
-            <div id="energy-total" class="sensor-value"></div>
+            <div id="energy-total" class="sensor-value">Total Energy Used: <span>Loading...</span></div>
+        </div>
+        <div class="slide-in-text-right">
+            <div id="temperature-value" class="sensor-value">Current Temperature: <?php echo $currentTemperature; ?> °C</div>
+        </div>
+        <div class="slide-in-text-right">
+            <div id="light-intensity-value" class="sensor-value">Current Light Intensity: <?php echo $currentLightIntensity; ?> lx</div>
         </div>
         <div class="slide-in-text-bottom">
-            <div id="energy-current" class="sensor-value"></div>
+            <div id="energy-current" class="sensor-value">Current Energy Consumption: <span>Loading...</span></div>
         </div>
         <div id="energy-current-gauge" class="gauge-container fade-in"></div>
+
 
         <!-- 7 VALUES -->
         <div class="sevendays">
@@ -68,7 +74,7 @@ $dbConnection = getDbConnection();
             $dbConnection->close();
             ?>
         </div>
-        <!-- CHART -->
+        <!-- CHART Energy Consumption 7 Days -->
         <script>
             var dates = [];
             var energyTotals = [];
@@ -147,6 +153,93 @@ $dbConnection = getDbConnection();
                 }
             });
         </script>
+        <script>
+    var dates = [];
+    var energyTotals = [];
+    var energyCurrents = [];
+    <?php
+    // Assuming $result is already fetched with data including both energy_total and energy_current
+    $result->data_seek(0);
+    while ($row = $result->fetch_assoc()) {
+        echo "dates.push('" . $row['datetime'] . "');\n"; // Use the correct column name for datetime
+        // Ensure the energy values are correctly formatted as numbers
+        echo "energyTotals.push(" . floatval(str_replace(',', '.', $row['energy_total'])) . ");\n";
+        echo "energyCurrents.push(" . floatval(str_replace(',', '.', $row['energy_current'])) . ");\n";
+    }
+    ?>
+    dates.reverse(); // Ensure the oldest dates are on the left
+    energyTotals.reverse(); // Match the energy totals with the dates order
+    energyCurrents.reverse(); // Match the energy currents with the dates order
+</script>
+<canvas id="energyChart" width="400" height="200"></canvas>
+<script>
+    var ctx = document.getElementById('energyChart').getContext('2d');
+    var energyChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dates,
+            datasets: [{
+                label: 'Daily Energy Total (KWH)',
+                data: energyTotals,
+                backgroundColor: 'rgba(128, 0, 128, 0.2)',
+                borderColor: 'rgba(3, 224, 254, 1)',
+                borderWidth: 4
+            }, {
+                label: 'Daily Energy Current (W)',
+                data: energyCurrents,
+                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                borderColor: 'rgba(255, 159, 64, 1)',
+                borderWidth: 4
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'white',
+                        borderWidth: 0.5,
+                    },
+                    ticks: {
+                        color: 'white',
+                        font: {
+                            family: "'Oswald', sans-serif",
+                            size: 14
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        color: 'white',
+                        borderWidth: 0.5,
+                    },
+                    ticks: {
+                        color: 'white',
+                        font: {
+                            family: "'Oswald', sans-serif",
+                            size: 14
+                        }
+                    }
+                }
+            },
+            layout: {
+                padding: {
+                    left: 50,
+                    right: 50,
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white',
+                        size: 20,
+                        family: "'Oswald', sans-serif"
+                    }
+                }
+            }
+        }
+    });
+</script>
         <script src="script.js"></script>
     </body>
 

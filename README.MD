@@ -1,6 +1,10 @@
 # Energy Visualization Dashboard
 
-This project provides a web-based dashboard for visualizing energy consumption data, pulling information directly from sensors configured in Home Assistant. It's hosted on [infovis.tokowa.at](https://infovis.tokowa.at) and consists of source (`src`) and distribution (`dist`) directories to separate the development environment from the production-ready code.
+This project provides a web-based dashboard for visualizing energy consumption data, pulling information directly from sensors configured in Home Assistant.
+Home Assistant receives all sensor information (in this case) every 10sec via MQTT Protocoll. However, the Cronjobs take 5min snapshots of the current states of the sensor and saves it into db for better maintenance.
+
+
+ It's hosted on [infovis.tokowa.at](https://infovis.tokowa.at) and consists of source (`src`) and distribution (`dist`) directories to separate the development environment from the production-ready code.
 
 ## Getting Started
 
