@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
               return (
                   "Total Consumption Today: " +
                   formattedEnergyTotalValue +
-                  " KW = " +
+                  " KW<br> = " +
                   '<span class="euro-cent-value" style="color: #00ff00; font-size:24px;">(' +
                   euroCentValueTotal +
                   " €)</span>"
