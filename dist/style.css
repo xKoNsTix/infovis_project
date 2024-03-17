@@ -93,6 +93,28 @@
     width: 0px;
   }
 }
+.rawstats {
+  height: 30vh;
+  display: flex;
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+.rawstats p {
+  color: white;
+  font-size: 18px;
+}
+.rawstats .left {
+  width: 50%;
+  text-align: center;
+}
+.rawstats .right {
+  width: 50%;
+  text-align: center;
+}
+.rawstats .right p {
+  margin-bottom: 4vh;
+}
+
 .slide-in-text-left {
   position: relative;
   overflow: hidden;
@@ -168,7 +190,7 @@
   text-align: center;
 }
 
-/********************Gauge********************/
+/******************** Gauge ********************/
 .container {
   max-width: 800px;
   margin: 20rem;
@@ -185,7 +207,7 @@
   border-radius: 4px;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
   color: #ffffff;
-  text-align: center;
+  text-align: left;
 }
 
 /* Responsive typography */
@@ -271,6 +293,25 @@ a:hover {
   flex-direction: row;
 }
 
+.third {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20vh;
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+.third .left {
+  width: 100%;
+  text-align: left;
+}
+.third .left h2 {
+  color: white;
+  font-size: 36px !important;
+}
+.third .right {
+  width: 50%;
+}
+
 /* Reset some basic elements */
 body, h1, p {
   margin: 0;
@@ -304,6 +345,11 @@ body {
 /* Apply the animation to the span element */
 .animated-value {
   animation: changeColorAndSize 1s ease; /* Use the defined animation with a duration of 1 second */
+}
+
+.chart {
+  display: flex;
+  width: 80% !important;
 }
 
 /*# sourceMappingURL=style.css.map */

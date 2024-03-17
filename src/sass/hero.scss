@@ -98,6 +98,29 @@
   }
 }
 
+.rawstats {
+  height: 30vh;
+  display: flex;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  p{
+    color:white;
+    font-size: 18px;
+  }
+  .left {
+    width: 50%;
+    text-align: center;
+
+  }
+  .right {
+    width: 50%;
+    text-align: center;
+    p{
+      margin-bottom: 4vh;
+    }
+  }
+}
+
 .slide-in-text-left {
   position: relative;
   overflow: hidden;
@@ -122,54 +145,53 @@
   }
 }
 
-
 .slide-in-text-right {
-    position: relative;
-    overflow: hidden;
-    animation: slideInRight 2s forwards, fadeIn 3s forwards;
+  position: relative;
+  overflow: hidden;
+  animation: slideInRight 2s forwards, fadeIn 3s forwards;
 
-    @keyframes slideInRight {
-      from {
-        transform: translateX(10%);
-      }
-      to {
-        transform: translateX(0);
-      }
+  @keyframes slideInRight {
+    from {
+      transform: translateX(10%);
     }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+    to {
+      transform: translateX(0);
     }
   }
 
-  .slide-in-text-bottom {
-    position: relative;
-    overflow: hidden;
-    animation: slideInBottom 2s forwards, fadeIn 3s forwards;
-
-    @keyframes slideInBottom {
-      from {
-        transform: translateY(-10%);
-      }
-      to {
-        transform: translateY(0);
-      }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
     }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+    to {
+      opacity: 1;
     }
   }
+}
+
+.slide-in-text-bottom {
+  position: relative;
+  overflow: hidden;
+  animation: slideInBottom 2s forwards, fadeIn 3s forwards;
+
+  @keyframes slideInBottom {
+    from {
+      transform: translateY(-10%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
 
 .slide-in-text-left h1,
 .slide-in-text-left p {
@@ -180,7 +202,7 @@
   text-align: center;
 }
 
-/********************Gauge********************/
+/******************** Gauge ********************/
 
 .container {
   max-width: 800px;
@@ -198,7 +220,7 @@
   border-radius: 4px;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
   color: #ffffff;
-  text-align: center;
+  text-align: left;
 }
 
 /* Responsive typography */
@@ -285,4 +307,24 @@ a:hover {
   height: 50vh;
   align-items: flex;
   flex-direction: row;
+}
+
+.third {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20vh;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  .left {
+    width: 100%;
+    text-align:left;
+    h2 {
+      color: white;
+      font-size: 36px !important;
+    }
+  }
+  .right {
+    width: 50%;
+
+  }
 }
