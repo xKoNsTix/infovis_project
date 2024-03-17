@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     curl_setopt($ch_purple, CURLOPT_HTTPHEADER, array(
         'Content-Type: application/json',
         'Content-Length: ' . strlen($data_string_purple),
-        'Authorization: Bearer ' . HOME_ASSISTANT_TOKEN // Add a space after 'Bearer'
+        'Authorization: Bearer ' . HOME_ASSISTANT_TOKEN
     ));
 
     $result_purple = curl_exec($ch_purple);
@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     curl_setopt($ch_return_color, CURLOPT_HTTPHEADER, array(
         'Content-Type: application/json',
         'Content-Length: ' . strlen($data_string_return_color),
-        'Authorization: Bearer ' . HOME_ASSISTANT_TOKEN // Add a space after 'Bearer'
+        'Authorization: Bearer ' . HOME_ASSISTANT_TOKEN 
     ));
 
     $result_return_color = curl_exec($ch_return_color);
