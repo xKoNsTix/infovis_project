@@ -1,17 +1,5 @@
 /** @format */
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   // Initialize the gauge
-//   var energyCurrentGauge = new JustGage({
-//     id: "energy-current-gauge",
-//     value: 0,
-//     min: 0,
-//     max: 400,
-//     title: "Aktueller Stromverbrauch",
-//     label: "Watts/Hour",
-//     valueFontColor: "White",
-//     // levelColors: ['#03E0FE', '#800080']
-//   });
 document.addEventListener("DOMContentLoaded", function () {
   // Initialize the gauge
   var energyCurrentGauge = new JustGage({
@@ -19,31 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
     value: 0,
     min: 0,
     max: 400,
-    title: "Current Power Consumption",
+    title: "Aktueller Stromverbrauch",
     label: "Watts/Hour",
-    valueFontColor: "#fff",
-    gaugeColor: "#6f42c1",
-    levelColors: ['#00b8d4', '#ffec99', '#ff9900'],
-    customSectors: [{
-      color: "#ff2e63",
-      lo: 0,
-      hi: 100
-    }, {
-      color: "#ff6b6b",
-      lo: 101,
-      hi: 200
-    }, {
-      color: "#ffa500",
-      lo: 201,
-      hi: 300
-    }, {
-      color: "#20c997",
-      lo: 301,
-      hi: 400
-    }]
+    valueFontColor: "White",
+    // levelColors: ['#03E0FE', '#800080']
   });
-});
-
   function fetchAndUpdateSensorData() {
     fetch("fetch_sensors.php")
       .then((response) => response.json())
@@ -59,18 +27,57 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Update the total energy consumption
-        document.getElementById("energy-total").innerHTML =
-          "Total Consumption Today:  " + data.energy_total + " KW";
+        document.getElementById("energy-total").innerHTML = (function () {
+          var energyTotalElement = document.getElementById("energy-total");
+          if (energyTotalElement) {
+            // Ensure data.energy_total is a number
+            var energyTotalValue = parseFloat(data.energy_total);
+            if (isNaN(energyTotalValue)) {
+              console.error("Energy total value is not a valid number.");
+              return "Total Consumption Today: Invalid data";
+            }
+            // Assuming the energy total value is in kilowatts and we need it in watts for the calculation
+            energyTotalValue *= 1000; // Convert kW to Watts if necessary
+            // Calculate euro cent value assuming the same rate of 0.3 euro cents per watt-hour
+            var euroCentValueTotal = ((energyTotalValue * 0.3) / 1000).toFixed(
+              2
+            );
+            return (
+              "Total Consumption Today: " +
+              (energyTotalValue / 1000).toFixed(2) +
+              " KW = " + // Converted back to KW for display
+              '<span class="euro-cent-value" style="color: #00ff00; font-size:24px;">(' +
+              euroCentValueTotal +
+              " €)</span>"
+            );
+          } else {
+            console.error("Element with id 'energy-total' not found.");
+            return ""; // Return an empty string or any appropriate fallback message
+          }
+        })();
 
         // Update the current energy consumption
-        document.getElementById("energy-current").innerHTML =
-          "Current Consumption Office: " + data.energy_current + " Watts/Hour";
+        var energyCurrentElement = document.getElementById("energy-current");
+        if (energyCurrentElement) {
+          var euroCentValue = ((energyCurrentValue * 0.3) / 1000).toFixed(2); // Calculate euro cent value
+          energyCurrentElement.innerHTML =
+            "Current Consumption Office: " +
+            energyCurrentValue +
+            " Watts/Hour = " +
+            '<span class="euro-cent-value" style="color: #00ff00; font-size:24px;">(' +
+            euroCentValue +
+            " €/h)</span>";
+        } else {
+          console.error("Element with id 'energy-current' not found.");
+        }
 
         // Update the temperature display
-        document.getElementById("temperature-value").innerHTML = "Temperature Outside: " + data.temperature_15 + " °C";
+        document.getElementById("temperature-value").innerHTML =
+          "Temperature Outside: " + data.temperature_15 + " °C";
 
         // Update the light intensity display
-        document.getElementById("light-intensity-value").innerHTML = "Light intensity outside: " + data.light_2 + " lx";
+        document.getElementById("light-intensity-value").innerHTML =
+          "Light intensity outside: " + data.light_2 + " lx";
       })
       .catch((error) => console.error("Error fetching sensor data:", error));
   }

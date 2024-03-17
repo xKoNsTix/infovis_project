@@ -96,22 +96,45 @@
 .rawstats {
   height: 30vh;
   display: flex;
-  margin-left: 10vw;
-  margin-right: 10vw;
+  margin-left: 15vw;
+  margin-right: 15vw;
+  justify-content: space-between;
 }
 .rawstats p {
   color: white;
   font-size: 18px;
 }
 .rawstats .left {
-  width: 50%;
-  text-align: center;
+  width: 40%;
+  text-align: center !important;
 }
 .rawstats .right {
-  width: 50%;
-  text-align: center;
+  width: 40%;
+  text-align: center !important;
 }
 .rawstats .right p {
+  margin-bottom: 4vh;
+}
+
+.gauge_section {
+  height: 30vh;
+  display: flex;
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+.gauge_section p {
+  color: white;
+  font-size: 18px;
+}
+.gauge_section .left {
+  width: 50%;
+  text-align: center !important;
+}
+.gauge_section .right {
+  width: 50%;
+  text-align: center !important;
+}
+.gauge_section .right p {
   margin-bottom: 4vh;
 }
 
@@ -207,7 +230,7 @@
   border-radius: 4px;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
   color: #ffffff;
-  text-align: left;
+  text-align: center;
 }
 
 /* Responsive typography */
