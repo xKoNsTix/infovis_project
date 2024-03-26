@@ -60,7 +60,7 @@ $dbConnection = getDbConnection();
 
             <!-- 7 VALUES -->
             <div class="right">
-            <p> Last 7 days </p>
+                <p> Last 7 days </p>
                 <div class="sevendays">
                     <?php
                     include '7_days.php'; ?>
@@ -152,8 +152,98 @@ $dbConnection = getDbConnection();
                     </script>
                 </div>
             </div>
-            <div class="right">
+        </div>
 
+        <div class="total">
+            <div class="left">
+                <h2>Power Consumption Today</h2>
+                <div class="chart">
+                    <script>
+                        var dates = [];
+                        var energyTotals = [];
+                        <?php
+                        // Assuming you have a connection to your database established ($mysqli)
+                        // Replace 'your_date_column' with the actual name of the column storing the date
+                        // The SQL query selects all rows where the date is today
+                        $today = date('Y-m-d');
+                        $query = "SELECT formatted_date, energy_total FROM energy_total_hourly WHERE DATE(your_date_column) = '$today'";
+
+                        if ($result = $mysqli->query($query)) {
+                            // Fetch all records from today
+                            while ($row = $result->fetch_assoc()) {
+                                echo "dates.push('" . $row['formatted_date'] . "');\n";
+                                echo "energyTotals.push(" . floatval(str_replace(',', '.', $row['energy_total'])) . ");\n";
+                            }
+                            $result->free();
+                        }
+                        ?>
+                        dates.reverse(); // Make sure oldest times are on the left
+                        energyTotals.reverse(); // Ensure the energy totals match the times order
+                    </script>
+                    <canvas id="energyChart" width="400" height="200"></canvas>
+                    <script>
+                        var ctx = document.getElementById('energyChart').getContext('2d');
+                        var energyChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: dates,
+                                datasets: [{
+                                    label: 'Hourly Energy Total (KWH)',
+                                    data: energyTotals,
+                                    backgroundColor: 'rgba(128, 0, 128, 0.2)',
+                                    borderColor: 'rgba(3, 224, 254, 1)',
+                                    borderWidth: 4
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        grid: {
+                                            color: 'white',
+                                            borderWidth: 0.5,
+                                        },
+                                        ticks: {
+                                            color: 'white',
+                                            font: {
+                                                family: "'Oswald', sans-serif",
+                                                size: 14
+                                            }
+                                        }
+                                    },
+                                    x: {
+                                        grid: {
+                                            color: 'white',
+                                            borderWidth: 0.5,
+                                        },
+                                        ticks: {
+                                            color: 'white',
+                                            font: {
+                                                family: "'Oswald', sans-serif",
+                                                size: 14
+                                            }
+                                        }
+                                    }
+                                },
+                                layout: {
+                                    padding: {
+                                        left: 50,
+                                        right: 50,
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        labels: {
+                                            color: 'white',
+                                            size: 20,
+                                            family: "'Oswald', sans-serif"
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </div>
             </div>
         </div>
         <script>
