@@ -51,3 +51,6 @@ $global_light_2_data = is_array($global_light_2_data) ? str_replace('.', ',', (s
 
 // No output as per your request. You can use these global variables directly in your PHP code.
 ?>
+
+
+

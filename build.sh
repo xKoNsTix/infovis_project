@@ -15,6 +15,7 @@ cp ./src/currentDayChart.php ./dist/currentDayChart.php
 cp ./src/global.php ./dist/global.php
 cp ./src/dailyChart.php ./dist/dailyChart.php
 cp ./src/dailyCurrentChart.php ./dist/dailyCurrentChart.php
+cp ./src/storyTelling.php ./dist/storyTelling.php
 
 
 

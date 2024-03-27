@@ -1,6 +1,14 @@
 .dailyChart{
     height:100vh;
     margin:10rem;
-
-
 }
+
+
+.dailyChart {
+    opacity: 0; /* Start invisible */
+    transition: opacity 2s ease-out; /* Smooth transition to visible */
+  }
+
+  .dailyChart.visible {
+    opacity: 1; /* Fully visible when the class 'visible' is added */
+  }

@@ -3,3 +3,12 @@
 .sevenDayChart {
   margin: 10rem;
 }
+
+.sevenDayChart {
+  opacity: 0; /* Start invisible */
+  transition: opacity 3s ease-out; /* Smooth transition to visible */
+}
+
+.sevenDayChart.visible {
+  opacity: 1; /* Fully visible when the class 'visible' is added */
+}

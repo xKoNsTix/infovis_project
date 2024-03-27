@@ -53,7 +53,7 @@ $dbConnection = getDbConnection();
             </div>
         </div>
 
-        <!-- CHART Energy Consumption 7 Days -->
+        <!-- CHARTS-->
         <div class="sevenDayChart">
             <?php require '7DayChart.php'; ?>
         </div>
@@ -64,6 +64,12 @@ $dbConnection = getDbConnection();
             <?php require 'dailyCurrentChart.php' ?>
         </div>
         <script src="script.js"></script>
+
+        <div class="storyTelling">
+            <?php require 'storyTelling.php' ?>
+        </div>
+
+
     </body>
 
 </html>

@@ -89,3 +89,35 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(fetchAndUpdateSensorData, 1000); // Refresh data every second
   fetchAndUpdateSensorData(); // Initial fetch of sensor data
 });
+
+
+function fadeInOnScroll(element) {
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      // Check if the element is intersecting
+      if (entry.isIntersecting) {
+        // Add 'visible' class when the element is in the viewport
+        entry.target.classList.add('visible');
+      } else {
+        // Remove 'visible' class when the element is out of the viewport
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, {
+    // Optional: Adjust the threshold and rootMargin to control when the callback is executed
+    threshold: 0.1 // This means the callback will execute when at least 10% of the element is visible in the viewport
+  });
+
+  // Observe the specified element
+  observer.observe(element);
+}
+
+// Initialize observer for each target element
+const sevenDayChartElement = document.querySelector('.sevenDayChart');
+if (sevenDayChartElement) fadeInOnScroll(sevenDayChartElement);
+
+const dailyCurrentChartElement = document.querySelector('.dailyCurrentChart');
+if (dailyCurrentChartElement) fadeInOnScroll(dailyCurrentChartElement);
+
+const dailyChartElement = document.querySelector('.dailyChart');
+if (dailyChartElement) fadeInOnScroll(dailyChartElement); // Changed the variable name to avoid redeclaration

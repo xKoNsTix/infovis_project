@@ -343,9 +343,27 @@ h2 {
   margin: 10rem;
 }
 
+.sevenDayChart {
+  opacity: 0; /* Start invisible */
+  transition: opacity 3s ease-out; /* Smooth transition to visible */
+}
+
+.sevenDayChart.visible {
+  opacity: 1; /* Fully visible when the class 'visible' is added */
+}
+
 .dailyChart {
   height: 100vh;
   margin: 10rem;
+}
+
+.dailyChart {
+  opacity: 0; /* Start invisible */
+  transition: opacity 2s ease-out; /* Smooth transition to visible */
+}
+
+.dailyChart.visible {
+  opacity: 1; /* Fully visible when the class 'visible' is added */
 }
 
 .rawstats {
@@ -381,6 +399,32 @@ h2 {
 /** @format */
 .dailyCurrentChart {
   margin: 10rem;
+}
+
+.dailyCurrentChart {
+  opacity: 0; /* Start invisible */
+  transition: opacity 2s ease-out; /* Smooth transition to visible */
+}
+
+.dailyCurrentChart.visible {
+  opacity: 1; /* Fully visible when the class 'visible' is added */
+}
+
+/** @format */
+.storyTelling .first,
+.storyTelling .second,
+.storyTelling .third,
+.storyTelling .fourth {
+  margin-top: 20rem;
+  margin-bottom: 0rem;
+}
+.storyTelling .first p,
+.storyTelling .second p,
+.storyTelling .third p,
+.storyTelling .fourth p {
+  text-align: center;
+  color: white;
+  font-size: 24px;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -2,3 +2,11 @@
 .dailyCurrentChart {
   margin: 10rem;
 }
+.dailyCurrentChart {
+  opacity: 0; /* Start invisible */
+  transition: opacity 2s ease-out; /* Smooth transition to visible */
+}
+
+.dailyCurrentChart.visible {
+  opacity: 1; /* Fully visible when the class 'visible' is added */
+}
