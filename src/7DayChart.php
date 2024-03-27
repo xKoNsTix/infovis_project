@@ -16,7 +16,7 @@
             dates.reverse(); // Make sure oldest dates are on the left
             energyTotals.reverse(); // Ensure the energy totals match the dates order
         </script>
-        <canvas id="energyChart7Days" width="400" height="200"></canvas>
+        <canvas id="energyChart7Days" style="width:100% !important;" width="400" height="200"></canvas>
         <script>
             var ctx = document.getElementById('energyChart7Days').getContext('2d');
             var energyChart = new Chart(ctx, {
@@ -63,8 +63,7 @@
                     },
                     layout: {
                         padding: {
-                            left: 50,
-                            right: 50,
+
                         }
                     },
                     plugins: {

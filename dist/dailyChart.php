@@ -35,12 +35,12 @@ $conn->close();
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
+<h2> Power Today Total </h2>
 <canvas id="energyChartDaily" width="400" height="200"></canvas>
 <script>
     var ctx = document.getElementById('energyChartDaily').getContext('2d');
     var energyChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: <?php echo json_encode($hours); ?>,
             datasets: [{
@@ -64,14 +64,23 @@ $conn->close();
                     },
                     ticks: {
                         color: 'white', // Set y-axis tick labels to white
+                        font: {
+                                    family: "'Oswald', sans-serif", // Set font family
+                                    size: 14 // Set font size
+                                }
                     }
                 },
                 x: {
+
                     grid: {
                         color: 'white', // Set grid lines to white
                     },
                     ticks: {
                         color: 'white', // Set x-axis tick labels to white
+                        font: {
+                                    family: "'Oswald', sans-serif", // Set font family
+                                    size: 14 // Set font size
+                                }
                     }
                 }
             },

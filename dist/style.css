@@ -312,6 +312,11 @@ body {
   scroll-behavior: smooth;
 }
 
+h2 {
+  color: white;
+  font-size: 36px !important;
+}
+
 /***** CURRENT CONSUMPTION ANIMATION **/
 /* Define CSS animation */
 @keyframes changeColorAndSize {
@@ -338,25 +343,9 @@ body {
   width: 80% !important;
 }
 
+/** @format */
 .sevenDayChart {
-  margin-top: 10rem;
-  display: flex;
-  flex-direction: row;
-  margin-top: 20vh;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-bottom: 10rem;
-}
-.sevenDayChart .left {
-  width: 100%;
-  text-align: left;
-}
-.sevenDayChart .left h2 {
-  color: white;
-  font-size: 36px !important;
-}
-.sevenDayChart .right {
-  width: 50%;
+  margin: 10rem;
 }
 
 .dailyChart {
