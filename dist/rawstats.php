@@ -26,7 +26,7 @@
                                         } else if ($global_light_2_data > 5001 && $global_light_2_data <= 10000) {
                                             echo "Daylight! Let's go outside! 🌞";
                                         } else if ($global_light_2_data > 10001 && $global_light_2_data <= 15000) {
-                                            echo "Bloody Hell, use Sunscrean! 🌞";
+                                            echo "Bloody Hell, use Sunscreen! 🌞";
                                         } else if ($global_light_2_data > 15000 && $global_light_2_data <= 30000) {
                                             echo "Peak Brightness -> Sunglasses! 🌞";
                                         }

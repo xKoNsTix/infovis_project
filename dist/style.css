@@ -345,6 +345,7 @@ body {
   margin-top: 20vh;
   margin-left: 10%;
   margin-right: 10%;
+  margin-bottom: 10rem;
 }
 .sevenDayChart .left {
   width: 100%;
@@ -358,7 +359,7 @@ body {
   width: 50%;
 }
 
-.fourth {
+.dailyChart {
   height: 100vh;
   background-color: white !important;
 }
@@ -371,7 +372,7 @@ body {
   justify-content: space-between;
 }
 .rawstats .description {
-  font-size: 24px;
+  font-size: 18px;
   color: white;
 }
 .rawstats .description p {

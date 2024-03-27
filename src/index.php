@@ -57,8 +57,8 @@ $dbConnection = getDbConnection();
         <div class="sevenDayChart">
             <?php require '7DayChart.php'; ?>
         </div>
-        <div class="fourth">
-            <?php require 'currentDayChart.php' ?>
+        <div class="dailyChart">
+            <?php require 'dailyChart.php' ?>
 
         </div>
         <script src="script.js"></script>

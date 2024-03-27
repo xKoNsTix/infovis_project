@@ -13,6 +13,7 @@ cp ./src/7DayChart.php ./dist/7DayChart.php
 cp ./src/rawstats.php ./dist/rawstats.php
 cp ./src/currentDayChart.php ./dist/currentDayChart.php
 cp ./src/global.php ./dist/global.php
+cp ./src/dailyChart.php ./dist/dailyChart.php
 
 
 
