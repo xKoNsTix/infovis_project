@@ -2,7 +2,6 @@
 // Include your database configuration file
 include_once '../config.php';
 
-
 // Connect to the database
 $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
@@ -10,17 +9,18 @@ $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$query = "SELECT HOUR(datetime) AS hour, energy_total FROM energy_total_hourly WHERE DATE(datetime) = CURDATE()";
+
+$query = "SELECT HOUR(datetime) AS hour, energy_current FROM energy_total_hourly WHERE DATE(datetime) = CURDATE()";
 $result = $conn->query($query);
 
 $hours = [];
-$energy_totals = [];
+$energy_currents = [];
 
 if ($result->num_rows > 0) {
     // Output data of each row
     while ($row = $result->fetch_assoc()) {
         $hours[] = $row["hour"];
-        $energy_totals[] = $row["energy_total"];
+        $energy_currents[] = $row["energy_current"];
     }
 } else {
     echo "0 results";
@@ -37,17 +37,17 @@ $conn->close();
 </head>
 
 <body>
-    <h2> Power Today Total </h2>
-    <canvas id="energyChartDaily" width="400" height="200"></canvas>
+    <h2>Today`s Snapshots</h2>
+    <canvas id="energyChartDailyCurrent" width="400" height="200"></canvas>
     <script>
-        var ctx = document.getElementById('energyChartDaily').getContext('2d');
+        var ctx = document.getElementById('energyChartDailyCurrent').getContext('2d');
         var energyChart = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: <?php echo json_encode($hours); ?>,
                 datasets: [{
-                    label: 'Hourly Energy Total',
-                    data: <?php echo json_encode($energy_totals); ?>,
+                    label: 'Hourly Energy Current',
+                    data: <?php echo json_encode($energy_currents); ?>,
                     backgroundColor: [
                         'rgba(35, 35, 35, 0.2)',
                     ],
@@ -77,7 +77,6 @@ $conn->close();
                         }
                     },
                     x: {
-
                         grid: {
                             color: 'white', // Set grid lines to white
                         },

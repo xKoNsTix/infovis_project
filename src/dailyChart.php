@@ -18,7 +18,7 @@ $energy_totals = [];
 
 if ($result->num_rows > 0) {
     // Output data of each row
-    while($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
         $hours[] = $row["hour"];
         $energy_totals[] = $row["energy_total"];
     }
@@ -30,69 +30,76 @@ $conn->close();
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Energy Data Chart</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-<h2> Power Today Total </h2>
-<canvas id="energyChartDaily" width="400" height="200"></canvas>
-<script>
-    var ctx = document.getElementById('energyChartDaily').getContext('2d');
-    var energyChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: <?php echo json_encode($hours); ?>,
-            datasets: [{
-                label: 'Hourly Energy Total',
-                data: <?php echo json_encode($energy_totals); ?>,
-                backgroundColor: [
-                    'rgba(35, 35, 35, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(0, 255, 255, 1)',
-                ],
-                borderWidth: 3
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        color: 'white', // Set grid lines to white
+    <h2> Power Today Total </h2>
+    <canvas id="energyChartDaily" width="400" height="200"></canvas>
+    <script>
+        var ctx = document.getElementById('energyChartDaily').getContext('2d');
+        var energyChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?php echo json_encode($hours); ?>,
+                datasets: [{
+                    label: 'Hourly Energy Total',
+                    data: <?php echo json_encode($energy_totals); ?>,
+                    backgroundColor: [
+                        'rgba(35, 35, 35, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(0, 255, 255, 1)',
+                    ],
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'white', // Set grid lines to white
+                        },
+                        ticks: {
+                            color: 'white', // Set y-axis tick labels to white
+                            font: {
+                                family: "'Oswald', sans-serif", // Set font family
+                                size: 14 // Set font size
+                            },
+                            // Custom callback function to append 'kW' to the tick values
+                            callback: function(value, index, values) {
+                                return value + ' kW';
+                            }
+                        }
                     },
-                    ticks: {
-                        color: 'white', // Set y-axis tick labels to white
-                        font: {
-                                    family: "'Oswald', sans-serif", // Set font family
-                                    size: 14 // Set font size
-                                }
+                    x: {
+
+                        grid: {
+                            color: 'white', // Set grid lines to white
+                        },
+                        ticks: {
+                            color: 'white', // Set x-axis tick labels to white
+                            font: {
+                                family: "'Oswald', sans-serif", // Set font family
+                                size: 14 // Set font size
+                            }
+                        }
                     }
                 },
-                x: {
-
-                    grid: {
-                        color: 'white', // Set grid lines to white
-                    },
-                    ticks: {
-                        color: 'white', // Set x-axis tick labels to white
-                        font: {
-                                    family: "'Oswald', sans-serif", // Set font family
-                                    size: 14 // Set font size
-                                }
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    labels: {
-                        color: 'white' // Set legend text to white
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white' // Set legend text to white
+                        }
                     }
                 }
             }
-        }
-    });
-</script>
+        });
+    </script>
 </body>
+
 </html>

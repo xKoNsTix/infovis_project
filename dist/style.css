@@ -338,11 +338,6 @@ h2 {
   animation: changeColorAndSize 1s ease; /* Use the defined animation with a duration of 1 second */
 }
 
-.chart {
-  display: flex;
-  width: 80% !important;
-}
-
 /** @format */
 .sevenDayChart {
   margin: 10rem;
@@ -381,6 +376,11 @@ h2 {
 }
 .rawstats .right p {
   margin-bottom: 4vh;
+}
+
+/** @format */
+.dailyCurrentChart {
+  margin: 10rem;
 }
 
 /*# sourceMappingURL=style.css.map */

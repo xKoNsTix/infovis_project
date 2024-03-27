@@ -19,7 +19,7 @@
             <div class="description"><?php
                                         if ($global_light_2_data === 'N/A') {
                                             echo "Light data is not available at the moment.";
-                                        } else if ($global_light_2_data <= 2) {
+                                        } else if ($global_light_2_data <= 50) {
                                             echo "Nighttime, Baby 🌚";
                                         } else if ($global_light_2_data > 2 && $global_light_2_data <= 5000) {
                                             echo "Dawn or Sunset 🌇";

@@ -44,6 +44,10 @@
                                 font: {
                                     family: "'Oswald', sans-serif", // Set font family
                                     size: 14 // Set font size
+                                },
+                                // Custom callback function to append 'kW' to the tick values
+                                callback: function(value, index, values) {
+                                    return value + ' kW';
                                 }
                             }
                         },
