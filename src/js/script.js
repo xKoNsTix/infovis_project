@@ -91,6 +91,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// SCROLL IN FANCY ANIMATION OBSERVER
+
+
 function fadeInOnScroll(element) {
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
