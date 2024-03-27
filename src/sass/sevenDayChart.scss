@@ -1,0 +1,19 @@
+.sevenDayChart {
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: row;
+    margin-top: 20vh;
+    margin-left: 10%;
+    margin-right: 10%;
+    .left {
+      width: 100%;
+      text-align: left;
+      h2 {
+        color: white;
+        font-size: 36px !important;
+      }
+    }
+    .right {
+      width: 50%;
+    }
+  }

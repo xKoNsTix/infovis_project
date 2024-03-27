@@ -98,29 +98,7 @@
   }
 }
 
-.rawstats {
-  height: 30vh;
-  display: flex;
-  margin-left: 15vw;
-  margin-right: 15vw;
-  justify-content: space-between;
 
-  p {
-    color: white;
-    font-size: 18px;
-  }
-  .left {
-    width: 40%;
-    text-align: center !important;
-  }
-  .right {
-    width: 40%;
-    text-align: center !important;
-    p {
-      margin-bottom: 4vh;
-    }
-  }
-}
 
 .gauge_section {
   height: 30vh;
@@ -332,26 +310,7 @@ a:hover {
   flex-direction: row;
 }
 
-.third {
-  display: flex;
-  flex-direction: row;
-  margin-top: 20vh;
-  margin-left: 10vw;
-  margin-right: 10vw;
-  .left {
-    width: 100%;
-    text-align: left;
-    h2 {
-      color: white;
-      font-size: 36px !important;
-    }
-  }
-  .right {
-    width: 50%;
-  }
-}
-
-.total{
-  width:100% !important;
+.total {
+  width: 100% !important;
   height: 100vh !important;
 }

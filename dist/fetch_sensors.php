@@ -35,6 +35,7 @@ function fetchSensorData($sensorUrl)
 }
 
 // Fetch and store sensor data individually
+global $energy_total_data, $energy_current_data, $temperature_15_data, $light_2_data;
 $energy_total_data = fetchSensorData($sensor_urls['energy_total']);
 $energy_current_data = fetchSensorData($sensor_urls['energy_current']);
 $temperature_15_data = fetchSensorData($sensor_urls['temperature_15']);

@@ -9,6 +9,11 @@ cp ./src/functions.php ./dist/
 cp robots.txt ./dist/
 cp ./src/save_daily_total.php ./dist/
 cp ./src/7_days.php ./dist/
+cp ./src/7DayChart.php ./dist/7DayChart.php
+cp ./src/rawstats.php ./dist/rawstats.php
+cp ./src/currentDayChart.php ./dist/currentDayChart.php
+cp ./src/global.php ./dist/global.php
+
 
 
 

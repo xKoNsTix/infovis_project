@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Update the light intensity display
         document.getElementById("light-intensity-value").innerHTML =
-          "Light intensity outside: " + data.light_2 + " lx";
+          "Light intensity outside: " + data.light_2 + " lx <br>";
       })
       .catch((error) => console.error("Error fetching sensor data:", error));
   }

@@ -1,0 +1,30 @@
+.rawstats {
+    height: 30vh;
+    display: flex;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    justify-content: space-between;
+    .description {
+        font-size: 24px;
+        color: white;
+      p{
+        color: white !important;
+      }
+    }
+
+    p {
+      color: white !important;
+      font-size: 18px;
+    }
+    .left {
+      width: 40%;
+      text-align: center !important;
+    }
+    .right {
+      width: 40%;
+      text-align: center !important;
+      p {
+        margin-bottom: 4vh;
+      }
+    }
+  }

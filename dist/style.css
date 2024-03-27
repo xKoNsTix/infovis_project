@@ -93,29 +93,6 @@
     width: 0px;
   }
 }
-.rawstats {
-  height: 30vh;
-  display: flex;
-  margin-left: 15vw;
-  margin-right: 15vw;
-  justify-content: space-between;
-}
-.rawstats p {
-  color: white;
-  font-size: 18px;
-}
-.rawstats .left {
-  width: 40%;
-  text-align: center !important;
-}
-.rawstats .right {
-  width: 40%;
-  text-align: center !important;
-}
-.rawstats .right p {
-  margin-bottom: 4vh;
-}
-
 .gauge_section {
   height: 30vh;
   display: flex;
@@ -316,25 +293,6 @@ a:hover {
   flex-direction: row;
 }
 
-.third {
-  display: flex;
-  flex-direction: row;
-  margin-top: 20vh;
-  margin-left: 10vw;
-  margin-right: 10vw;
-}
-.third .left {
-  width: 100%;
-  text-align: left;
-}
-.third .left h2 {
-  color: white;
-  font-size: 36px !important;
-}
-.third .right {
-  width: 50%;
-}
-
 .total {
   width: 100% !important;
   height: 100vh !important;
@@ -378,6 +336,61 @@ body {
 .chart {
   display: flex;
   width: 80% !important;
+}
+
+.sevenDayChart {
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: row;
+  margin-top: 20vh;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.sevenDayChart .left {
+  width: 100%;
+  text-align: left;
+}
+.sevenDayChart .left h2 {
+  color: white;
+  font-size: 36px !important;
+}
+.sevenDayChart .right {
+  width: 50%;
+}
+
+.fourth {
+  height: 100vh;
+  background-color: white !important;
+}
+
+.rawstats {
+  height: 30vh;
+  display: flex;
+  margin-left: 15vw;
+  margin-right: 15vw;
+  justify-content: space-between;
+}
+.rawstats .description {
+  font-size: 24px;
+  color: white;
+}
+.rawstats .description p {
+  color: white !important;
+}
+.rawstats p {
+  color: white !important;
+  font-size: 18px;
+}
+.rawstats .left {
+  width: 40%;
+  text-align: center !important;
+}
+.rawstats .right {
+  width: 40%;
+  text-align: center !important;
+}
+.rawstats .right p {
+  margin-bottom: 4vh;
 }
 
 /*# sourceMappingURL=style.css.map */
