@@ -72,7 +72,7 @@ $conn->close();
                             },
                             // Custom callback function to append 'kW' to the tick values
                             callback: function(value, index, values) {
-                                return value/100 + ' kW';
+                                return value + 'w';
                             }
                         }
                     },
