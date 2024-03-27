@@ -25,42 +25,40 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           console.error("Invalid energy current value:", data.energy_current);
         }
-
-        // Update the total energy consumption
-        // document.getElementById("energy-total").innerHTML =
-        // "Total Consumption Today:  " + data.energy_total + " KW";
-
         document.getElementById("energy-total").innerHTML = (function () {
           var energyTotalElement = document.getElementById("energy-total");
           if (energyTotalElement) {
-              // Ensure data.energy_total is a number, replacing comma with dot for proper parsing
-              var energyTotalValue = parseFloat(data.energy_total.replace(',', '.'));
-              if (isNaN(energyTotalValue)) {
-                  console.error("Energy total value is not a valid number.");
-                  return "Total Consumption Today: Invalid data";
-              }
-              // Assuming the energy total value is in kilowatts and we need it in watts for the calculation
-              energyTotalValue *= 1000; // Convert kW to Watts if necessary
-              // Ensure the display value is always shown with two decimal places and uses a comma as the decimal separator
-              var formattedEnergyTotalValue = (energyTotalValue / 1000).toFixed(2).replace('.', ',');
-              // Calculate euro cent value assuming the same rate of 0.3 euro cents per watt-hour
-              var euroCentValueTotal = ((energyTotalValue * 0.3) / 1000).toFixed(2).replace('.', ',');
-              return (
-                  "Total Consumption Today: " +
-                  formattedEnergyTotalValue +
-                  " KW<br> = " +
-                  '<span class="euro-cent-value" style="color: #00ff00; font-size:24px;">(' +
-                  euroCentValueTotal +
-                  " €)</span>"
-              );
+            // Ensure data.energy_total is a number, replacing comma with dot for proper parsing
+            var energyTotalValue = parseFloat(
+              data.energy_total.replace(",", ".")
+            );
+            if (isNaN(energyTotalValue)) {
+              console.error("Energy total value is not a valid number.");
+              return "Total Consumption Today: Invalid data";
+            }
+            // Assuming the energy total value is in kilowatts and we need it in watts for the calculation
+            energyTotalValue *= 1000; // Convert kW to Watts if necessary
+            // Ensure the display value is always shown with two decimal places and uses a comma as the decimal separator
+            var formattedEnergyTotalValue = (energyTotalValue / 1000)
+              .toFixed(2)
+              .replace(".", ",");
+            // Calculate euro cent value assuming the same rate of 0.3 euro cents per watt-hour
+            var euroCentValueTotal = ((energyTotalValue * 0.3) / 1000)
+              .toFixed(2)
+              .replace(".", ",");
+            return (
+              "Total Consumption Today: " +
+              formattedEnergyTotalValue +
+              " KW<br> = " +
+              '<span class="euro-cent-value" style="color: #00ff00; font-size:24px;">(' +
+              euroCentValueTotal +
+              " €)</span>"
+            );
           } else {
-              console.error("Element with id 'energy-total' not found.");
-              return ""; // Return an empty string or any appropriate fallback message
+            console.error("Element with id 'energy-total' not found.");
+            return ""; // Return an empty string or any appropriate fallback message
           }
-      })();
-
-
-
+        })();
 
         // Update the current energy consumption
         var energyCurrentElement = document.getElementById("energy-current");

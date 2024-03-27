@@ -1,6 +1,7 @@
 <?php
 // Include your database configuration file
-include '../config.php';
+include_once '../config.php';
+
 
 // Connect to the database
 $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
@@ -9,10 +10,6 @@ $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-// Assuming 'datetime' contains the date and time, 'energy_total' the total energy,
-// and 'energy_current' the current energy usage
-// Fetch today's entries from energy_total_hourly
 $query = "SELECT HOUR(datetime) AS hour, energy_total FROM energy_total_hourly WHERE DATE(datetime) = CURDATE()";
 $result = $conn->query($query);
 
@@ -28,10 +25,6 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
-echo '<pre>';
-print_r($hours);
-print_r($energy_totals);
-echo '</pre>';
 $conn->close();
 ?>
 
@@ -43,9 +36,9 @@ $conn->close();
 </head>
 <body>
 
-<canvas id="energyChart" width="400" height="200"></canvas>
+<canvas id="energyChartDaily" width="400" height="200"></canvas>
 <script>
-    var ctx = document.getElementById('energyChart').getContext('2d');
+    var ctx = document.getElementById('energyChartDaily').getContext('2d');
     var energyChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -54,18 +47,39 @@ $conn->close();
                 label: 'Hourly Energy Total',
                 data: <?php echo json_encode($energy_totals); ?>,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(35, 35, 35, 0.2)',
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
+                    'rgba(0, 255, 255, 1)',
                 ],
-                borderWidth: 1
+                borderWidth: 3
             }]
         },
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid: {
+                        color: 'white', // Set grid lines to white
+                    },
+                    ticks: {
+                        color: 'white', // Set y-axis tick labels to white
+                    }
+                },
+                x: {
+                    grid: {
+                        color: 'white', // Set grid lines to white
+                    },
+                    ticks: {
+                        color: 'white', // Set x-axis tick labels to white
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white' // Set legend text to white
+                    }
                 }
             }
         }
