@@ -419,12 +419,9 @@ h2 {
   margin-top: 20rem;
   margin-bottom: 0rem;
 }
-.storyTelling .first p,
-.storyTelling .second p,
-.storyTelling .third p,
-.storyTelling .fourth p {
+.storyTelling p {
   text-align: center;
-  color: white;
+  color: white !important;
   font-size: 24px;
 }
 .storyTelling .fade-in {

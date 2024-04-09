@@ -26,7 +26,7 @@ if ($result->num_rows > 0) {
     // Output data of each row
     $row = $result->fetch_assoc();
     $highestTempToday = $row["max_temperature"];
-    echo "Highest temperature recorded today: " . $highestTempToday;
+    //echo "Highest temperature recorded today: " . $highestTempToday;
 } else {
     echo "No temperature records found for today";
 }
@@ -35,24 +35,66 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 
+<!-- Calculate duration of work -->
+<?php
+// Sample value of $global_energy_total_data
+
+// Define the thresholds
+$low_threshold = 0;
+$medium_threshold = 1500;
+$high_threshold = 2500;
+
+// Check the range of $global_energy_total_data
+if ($global_energy_total_data >= $low_threshold && $global_energy_total_data <= $medium_threshold) {
+    $result = "zero";
+} elseif ($global_energy_total_data > $medium_threshold && $global_energy_total_data <= $high_threshold) {
+    $result = "a medium";
+} elseif ($global_energy_total_data > $high_threshold) {
+    $result = "an exceptional";
+} else {
+    $result = "Invalid value"; // In case the value is negative or not numeric
+}
+
+echo "Result: $result";
+?>
 
 
 <div class="second fade-in">
-    <p> Okay lets see ... </p>
-    <p> Today's max-temperature was: <?php echo $highestTempToday; ?> °C. </p>
-    <div style="text-align: center;"> <!-- Center align the content -->
-        <p> This means you got <span class="euro-value" style="color:#01ff00;"><?php echo number_format((float)$global_energy_total_data * 0.3, 2, '.', ''); ?> €</span> from the government!<br><br></p>
+    <p> Your work to Temperature Evaluation: </p>
+    <p> Today's max-temperature was: <?php echo $highestTempToday; ?> °C and you did <?php echo $result ?> amount of work! <br><br></p>
+    <div style="text-align: center;">
         <iframe src="https://giphy.com/embed/XreQmk7ETCak0" width="240" height="180" frameBorder="0" class="giphy-embed" allowFullScreen style="display: inline-block; margin: 0 auto;"></iframe> <!-- Inline-block display and auto margin for centering -->
-        <p style="text-align: center;"><a href="https://giphy.com/gifs/timanderic-money-cryptocurrency-3o751XDbTvZw958ZYk">via GIPHY</a></p> <!-- Center align the link -->
+        <p style="text-align: center;"><a href="https://giphy.com/gifs/timanderic-money-cryptocurrency-3o751XDbTvZw958ZYk"></a></p>
+        <br><br>
+        <?php
+        date_default_timezone_set('Europe/Vienna');
+        $current_time = strtotime(date("H:i"));
+        if ($current_time < strtotime('13:30')) {
+            if ($result == "zero" && $highestTempToday < 18) {
+                echo "<p> Weather wasn't that good and no work is logged, u ok bro? Keep hustlin' </p>";
+            } else if ($result == "a medium" && $highestTempToday < 18) {
+                echo " <p> Weather wasn't so perfect today, glad you kept it inside, man! </p>";
+            } else if ($result == "an exceptional" && $highestTempToday < 18) {
+                echo "Perfect usage of time bro, weather wasn't so good anyways";
+            } else if ($result == "zero" && $highestTempToday > 18) {
+                echo "<p> Enjoyed your day off, didn't ya?";
+            } else if ($result == "a medium" && $highestTempToday > 18) {
+                echo " <p> Weather wasn't so perfect today, but still good, maybe next time go for a walk or somethin'? </p>";
+            } else if ($result == "an exceptional" && $highestTempToday > 18) {
+                echo "Always working, busy bee... Maybe enjoy the 🌞 once in a while";
+            }
+        } else {
+            echo "<p> The day is still young, nothing to see here yet on your evalutation</p>";
+        }
+        ?>
+
+
     </div>
+
 </div>
 
-
-<div class="third fade-in">
-    <p> This will be the third text </p>
-</div>
 <div class="fourth fade-in">
-    <p> Thank you very much for checking out my private data!</p>
+    <p style="font-size: 36px"> Thank you very much for checking out my very private data!</p>
 </div>
 
 <!-- fancy fade ins -->
@@ -85,5 +127,3 @@ $conn->close();
         document.addEventListener("scroll", fadeInElementsOnScroll);
     });
 </script>
-
-
