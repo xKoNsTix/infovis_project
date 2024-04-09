@@ -67,7 +67,7 @@ if ($global_energy_total_data >= $lowest_threshold && $global_energy_total_data 
     $result = "Invalid value"; // In case the value is negative or not numeric
 }
 
-?> <p><?php //echo "Result: $result + $baseline + $global_energy_total_data";
+?> <p><?php echo "Result: $result + $baseline + $global_energy_total_data";
         ?> </p>
 
 
