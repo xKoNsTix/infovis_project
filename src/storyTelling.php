@@ -88,17 +88,26 @@ if ($global_energy_total_data <= $lowest_threshold) {
         if ($current_time < strtotime('13:30')) {
             echo "<p> The day is still young, nothing to see here yet on your evalutation</p>";
         } else {
-            if ($result == "zero" && $highestTempToday < 18) {
+            if ($result == "no (just temporary in the office)" && $highestTempToday < 18) {
                 echo "<p> Weather wasn't that good and no work is logged, u ok bro? Keep hustlin' ! </p>";
-            } else if ($result == "a medium" && $highestTempToday < 18) {
+            } elseif ($result == "a small (4-8h)" && $highestTempToday < 18) {
+                echo "<p> Looks like you managed to squeeze in some work with that soggy weather. Maybe do a little more?</p>";
+            } else if ($result == "a medium (8-10h)" && $highestTempToday < 18) {
                 echo " <p> Weather wasn't so perfect today, glad you kept it inside, man! </p>";
-            } else if ($result == "an exceptional" && $highestTempToday < 18) {
+            } elseif ($result == "a high (10-12h)" && $highestTempToday < 18) {
+                echo "<p> Despite the gloomy weather, you've put in a lot of hours. Great discipline!</p>";
+            } else if ($result == "an exceptional(12h+)" && $highestTempToday < 18) {
                 echo "Perfect usage of time bro, weather wasn't so good anyways";
-            } else if ($result == "zero" && $highestTempToday > 18) {
+            }
+            else if ($result == "no (just temporary in the office)" && $highestTempToday > 18) {
                 echo "<p> Enjoyed your day off, didn't ya?";
-            } else if ($result == "a medium" && $highestTempToday > 18) {
-                echo " <p> Weather wasn't so perfect today, but still good, maybe next time go for a walk or somethin'? </p>";
-            } else if ($result == "an exceptional" && $highestTempToday > 18) {
+            } else if ($result == "a small (4-8h)" && $highestTempToday > 18) {
+                echo "<p> A balanced day! Got some work done and hopefully, you also got to enjoy the nice weather. Perfect for recharging your batteries!</p>";
+            } else if ($result == "a medium (8-10h)" && $highestTempToday > 18) {
+                echo " <p> Weather was good today but you decided to work anyways. #beastmode? </p>";
+            } else if ($result == "a high (10-12h)" && $highestTempToday >= 18) {
+                echo "<p> You've been working hard even on a beautiful day. Don't forget to take a moment for yourself and enjoy the weather!</p>";
+            } else if ($result == "an exceptional(12h+)" && $highestTempToday > 18) {
                 echo "Always working, busy bee... Maybe enjoy the 🌞 once in a while";
             }
         }
