@@ -427,5 +427,19 @@ h2 {
   color: white;
   font-size: 24px;
 }
+.storyTelling .fade-in {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.storyTelling .fade-in.active {
+  opacity: 1;
+}
+.storyTelling .fourth {
+  margin-bottom: 20vh;
+}
+.storyTelling .storyTelling .first.fade-in iframe {
+  display: block; /* Set iframe to block element to center it */
+  margin: 0 auto; /* Auto margin for centering */
+}
 
 /*# sourceMappingURL=style.css.map */
