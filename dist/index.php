@@ -63,13 +63,11 @@ $dbConnection = getDbConnection();
         <div class="dailyCurrentChart">
             <?php require 'dailyCurrentChart.php' ?>
         </div>
-        <script src="script.js"></script>
-
         <div class="storyTelling">
             <?php require 'storyTelling.php' ?>
         </div>
 
-
+        <script src="script.js"></script>
     </body>
 
 </html>

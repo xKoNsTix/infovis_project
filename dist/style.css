@@ -399,6 +399,7 @@ h2 {
 /** @format */
 .dailyCurrentChart {
   margin: 10rem;
+  margin-top: -10rem;
 }
 
 .dailyCurrentChart {
