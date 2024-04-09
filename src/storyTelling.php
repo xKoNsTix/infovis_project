@@ -57,20 +57,20 @@ $high_threshold = $baseline + 1.650; //more than 8h of work
 
 // Check the range of $global_energy_total_data
 if ($global_energy_total_data <= $lowest_threshold) {
-    $result = "no";
+    $result = "no (just temporary in the office)";
 } else if ($global_energy_total_data >= $lowest_threshold && $global_energy_total_data <= $low_threshold) {
-    $result = "a small";
+    $result = "a small (4-8h)";
 } elseif ($global_energy_total_data > $low_threshold && $global_energy_total_data <= $medium_threshold) {
-    $result = "a medium";
+    $result = "a medium (8-10h)";
 } elseif ($global_energy_total_data > $medium_threshold && $global_energy_total_data <= $high_threshold) {
-    $result = " a high";
+    $result = " a high (10-12h)";
 } elseif ($global_energy_total_data > $high_threshold) {
-    $result = "an exceptional";
+    $result = "an exceptional(12h+)";
 } else {
     $result = "Invalid value"; // In case the value is negative or not numeric
 }
 
-?> <p><?php echo "Result: $result + $baseline + $global_energy_total_data";
+?> <p><?php //echo "Result: $result + $baseline + $global_energy_total_data";
         ?> </p>
 
 
