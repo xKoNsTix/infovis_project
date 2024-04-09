@@ -1,4 +1,6 @@
-<?php include_once '../config.php'; ?>
+<?php include_once '../config.php';
+$global_energy_total_data = str_replace(',', '.', $global_energy_total_data); // conversion for calculation
+?>
 
 <div class="first fade-in">
     <p> Okay lets see ... </p>
@@ -19,16 +21,16 @@ if ($conn->connect_error) {
 
 // Fetch highest temperature recorded for today
 $dateToday = date('Y-m-d');
-$sql = "SELECT MAX(temperature) AS max_temperature FROM weather WHERE DATE(datetime) = '$dateToday'";
+$sql = "SELECT MAX(CAST(temperature AS DECIMAL(10, 2))) AS max_temperature FROM weather WHERE DATE(datetime) = '$dateToday'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // Output data of each row
     $row = $result->fetch_assoc();
     $highestTempToday = $row["max_temperature"];
-    //echo "Highest temperature recorded today: " . $highestTempToday;
+    // echo "Highest temperature recorded today: " . $highestTempToday;
 } else {
-    echo "No temperature records found for today";
+    // echo "No temperature records found for today";
 }
 
 // Close connection
@@ -39,24 +41,35 @@ $conn->close();
 <?php
 // Sample value of $global_energy_total_data
 
-// Define the thresholds
-$low_threshold = 0;
-$medium_threshold = 1500;
-$high_threshold = 2500;
+// Define the thresholds with baseline power consumption
 
+
+$current_hour = date('H');
+$reference_hour = 1;
+$hour_difference = ($current_hour - $reference_hour + 24) % 24;
+$baseline = 0.050 + $hour_difference * 0.050;
+
+$lowest_threshold = $baseline + 0.150; // just in the office to get stuff
+$low_threshold = $baseline + 0.800; // around 4h of work
+
+$medium_threshold = $baseline + 1.600; // around 8h of work
+$high_threshold = $baseline + 1.650; //more than 8h of work
 // Check the range of $global_energy_total_data
-if ($global_energy_total_data >= $low_threshold && $global_energy_total_data <= $medium_threshold) {
+if ($global_energy_total_data >= $lowest_threshold && $global_energy_total_data <= $low_threshold) {
     $result = "zero";
-} elseif ($global_energy_total_data > $medium_threshold && $global_energy_total_data <= $high_threshold) {
+} elseif ($global_energy_total_data > $low_threshold && $global_energy_total_data <= $medium_threshold) {
     $result = "a medium";
+} elseif ($global_energy_total_data > $medium_threshold && $global_energy_total_data <= $high_threshold) {
+    $result = " a high";
 } elseif ($global_energy_total_data > $high_threshold) {
     $result = "an exceptional";
 } else {
     $result = "Invalid value"; // In case the value is negative or not numeric
 }
 
-echo "Result: $result";
-?>
+?> <p><?php //echo "Result: $result + $baseline + $global_energy_total_data";
+        ?> </p>
+
 
 
 <div class="second fade-in">
@@ -70,8 +83,10 @@ echo "Result: $result";
         date_default_timezone_set('Europe/Vienna');
         $current_time = strtotime(date("H:i"));
         if ($current_time < strtotime('13:30')) {
+            echo "<p> The day is still young, nothing to see here yet on your evalutation</p>";
+        } else {
             if ($result == "zero" && $highestTempToday < 18) {
-                echo "<p> Weather wasn't that good and no work is logged, u ok bro? Keep hustlin' </p>";
+                echo "<p> Weather wasn't that good and no work is logged, u ok bro? Keep hustlin' ! </p>";
             } else if ($result == "a medium" && $highestTempToday < 18) {
                 echo " <p> Weather wasn't so perfect today, glad you kept it inside, man! </p>";
             } else if ($result == "an exceptional" && $highestTempToday < 18) {
@@ -83,8 +98,6 @@ echo "Result: $result";
             } else if ($result == "an exceptional" && $highestTempToday > 18) {
                 echo "Always working, busy bee... Maybe enjoy the 🌞 once in a while";
             }
-        } else {
-            echo "<p> The day is still young, nothing to see here yet on your evalutation</p>";
         }
         ?>
 
