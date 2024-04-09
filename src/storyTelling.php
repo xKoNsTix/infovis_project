@@ -51,12 +51,15 @@ $baseline = 0.050 + $hour_difference * 0.050;
 
 $lowest_threshold = $baseline + 0.150; // just in the office to get stuff
 $low_threshold = $baseline + 0.800; // around 4h of work
-
 $medium_threshold = $baseline + 1.600; // around 8h of work
 $high_threshold = $baseline + 1.650; //more than 8h of work
+
+
 // Check the range of $global_energy_total_data
-if ($global_energy_total_data >= $lowest_threshold && $global_energy_total_data <= $low_threshold) {
-    $result = "zero";
+if ($global_energy_total_data <= $lowest_threshold) {
+    $result = "no";
+} else if ($global_energy_total_data >= $lowest_threshold && $global_energy_total_data <= $low_threshold) {
+    $result = "a small";
 } elseif ($global_energy_total_data > $low_threshold && $global_energy_total_data <= $medium_threshold) {
     $result = "a medium";
 } elseif ($global_energy_total_data > $medium_threshold && $global_energy_total_data <= $high_threshold) {
