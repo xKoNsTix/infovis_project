@@ -14,7 +14,7 @@
             <div id="temperature-value" class="sensor-value">Current Temperature: <?php echo $currentTemperature; ?> °C</div>
         </div>
         <div class="slide-in-text-right">
-            <div id="light-intensity-value" class="sensor-value">Current Light Intensity: <?php echo $currentLightIntensity; ?> ?> lx<br>
+            <div id="light-intensity-value" class="sensor-value">Current Light Intensity: <?php echo $currentLightIntensity; ?>  ?> lx<br>
             </div>
             <div class="description"><?php
                                         if ($global_light_2_data === 'N/A') {
@@ -31,7 +31,7 @@
                                             echo "Peak Brightness -> Sunglasses! 🌞";
                                         }
                                          else {
-                                            echo "Sensor is broken, due to lack of programming propably 🙈";
+                                            echo "Sensor is broke down, 23.04.2024 🙈";
                                         }
                                         ?>
             </div>

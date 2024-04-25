@@ -39,10 +39,6 @@ $conn->close();
 
 <!-- Calculate duration of work -->
 <?php
-// Sample value of $global_energy_total_data
-
-// Define the thresholds with baseline power consumption
-
 
 $current_hour = date('H');
 $reference_hour = 1;
