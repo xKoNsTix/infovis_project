@@ -31,7 +31,7 @@
                                             echo "Peak Brightness -> Sunglasses! 🌞";
                                         }
                                          else {
-                                            echo "Sensor is broke down, 23.04.2024 🙈";
+                                            echo "Sensor is not working anymore, broke down 23.04.2024 🙈";
                                         }
                                         ?>
             </div>

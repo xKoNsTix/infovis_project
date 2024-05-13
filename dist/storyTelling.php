@@ -43,7 +43,7 @@ $conn->close();
 $current_hour = date('H');
 $reference_hour = 1;
 $hour_difference = ($current_hour - $reference_hour + 24) % 24;
-$baseline = 0.050 + $hour_difference * 0.050;
+$baseline = 0.150 + $hour_difference * 0.100;
 
 $lowest_threshold = $baseline + 0.150; // just in the office to get stuff
 $low_threshold = $baseline + 0.800; // around 4h of work
